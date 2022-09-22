@@ -32,6 +32,7 @@ replay_pid*
 # vscode specific
 .vscode/
 lib/
+README.md
 
 
 # eclipse gitignore template tomada de: https://github.com/github/gitignore/blob/main/Global/Eclipse.gitignore
