@@ -1,4 +1,4 @@
-package Logica;
+//Flor
 
 public class Criatura {
 	//atributos

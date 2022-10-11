@@ -1,0 +1,10 @@
+Ultima modificacion: 9/22/2022
+Jugador:
+
+tiene los atributos puntaje y tiempo. Esto porque es una clase estara presente durante toda la partida.
+
+criatura:
+cabeza y cola. Para separar las partesde las mismas. la cola es una lista doblemente enlazada
+
+Alimentos:
+es una clase base que se caragara durante la construccion. Definira los valores de cada comida 
