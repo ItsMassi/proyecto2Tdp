@@ -14,6 +14,8 @@ abstract public class Comida extends Entidad{
     
 
     abstract int getTamaño();
+    abstract void  setPosicion (int x, int y);
+    abstract void  setEntidadGrafica(EntidadGrafica i);
     abstract Posicion getPosicion();
     abstract EntidadGrafica  getEntidadGrafica();
     abstract boolean esColisionable();

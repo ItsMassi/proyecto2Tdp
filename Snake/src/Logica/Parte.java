@@ -1,33 +1,28 @@
 package Logica;
 
-import java.net.URL;
+
+
+import Visitor.Visitor;
 
 public class Parte  extends Entidad{
-    protected Posicion posicion;
+	protected Posicion pos;
     protected EntidadGrafica imagen;
-    protected static final boolean superponer = false;
+    protected boolean superponer;
 
-    Parte(Posicion p, EntidadGrafica imagen) {
-        pos = p;
-        this.imagen = imagen;
+    public Parte (int x, int y, EntidadGrafica i) {
+    	pos  = new Posicion (x, y);
+    	imagen = i;
     }
     
-    public void setPosicion(Posicion pos) {
-        posicion = pos;
+    public void  setPosicion (int x, int y) {
+    	pos.setX(x);
+    	pos.setY(y);
     }
-
-    public void setEntidadGrafica(EntidadGrafica imagen) {
-    	 this.imagen = imagen;
-    }
+    public void  setEntidadGrafica(EntidadGrafica i) {imagen = i;} 
     
-    public boolean esColisionable () {return superponer;}
-    
-    public Posicion getPos() {
-        return posicion;
-    }
-
-    public	EntidadGrafica getEntidadGrafica() {
-        return imagen;
-    }
+    public  Posicion getPosicion() {return pos;}
+    public EntidadGrafica  getEntidadGrafica() {return imagen;}
+	public boolean esColisionable() {return superponer;}
+    public  void accept (Visitor visitor) {visitor.visit(this);}
 
 }

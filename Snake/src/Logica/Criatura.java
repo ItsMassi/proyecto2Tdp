@@ -28,7 +28,8 @@ public class Criatura {
 		miEstado = new EstadoNormal (this); 
 		Iterator <Posicion>  it = posiciones.iterator();
 		while (it.hasNext()) {
-			miCuerpo.addLast(new Parte (it.next(), miEstado.getAspecto()));
+			Posicion p = it.next();
+			miCuerpo.addLast(new Parte (p.getX(), p.getY(), miEstado.getAspecto()));
 		}
 		miVisitor = new VisitorCriatura(this);
 	}
@@ -69,7 +70,7 @@ public class Criatura {
 		while (!miCuerpo.isEmpty()) {
 			try {
 				Parte p = miCuerpo.remove(miCuerpo.first());
-				p.setPosicion(null);
+				p.setPosicion(0, 0);
 				p.setEntidadGrafica(null);
 			} catch (EmptyListException | InvalidPositionException e) {e.printStackTrace();} 
 		}
@@ -86,13 +87,13 @@ public class Criatura {
 	}
 	
 	private void mover (Posicion p, EntidadGrafica imagenCabeza) {
-		Parte nuevaCabeza = new Parte (p, imagenCabeza);
+		Parte nuevaCabeza = new Parte (p.getX(), p.getY(), imagenCabeza);
 		miCuerpo.addFirst(nuevaCabeza);
 		
 		try {
 			if (enReserva==0) {
 				Parte cola = miCuerpo.remove(miCuerpo.last());
-				cola.setPosicion(null);
+				cola.setPosicion(0,0);
 				cola.setEntidadGrafica(null);
 			}
 			else 

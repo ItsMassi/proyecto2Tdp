@@ -12,7 +12,14 @@ public class PowerUp extends Comida{
     protected Estado estado;
 	
     
-	
+// constructor con posicion y entidadGrafica
+    
+    public void  setPosicion (int x, int y) {
+    	pos.setX(x);
+    	pos.setY(y);
+    }
+    public void  setEntidadGrafica(EntidadGrafica i) {imagen = i;} 
+    
     public  Posicion getPosicion() {return pos;}
     public EntidadGrafica  getEntidadGrafica() {return imagen;}
 	public boolean esColisionable() {return superponer;}

@@ -1,25 +1,28 @@
 package Logica;
 //Dani
-import java.io.File;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.net.URL;
+
+import Visitor.Visitor;
+
+
 
 public class Celda extends Entidad{
-    Posicion pos;
-    String url;
+	protected Posicion pos;
+    protected EntidadGrafica imagen;
     protected boolean superponer;
-
-    Celda(int x, int y) {
-        pos = new Posicion(x, y);
-        url = App.class.getResource("bgcell.png").getPath();
+    
+    public Celda (int x, int y, EntidadGrafica i) {
+    	pos  = new Posicion (x, y);
+    	imagen = i;
     }
-
-    public Posicion getPos() {
-        return pos;
+    
+    public void  setPosicion (int x, int y) {
+    	pos.setX(x);
+    	pos.setY(y);
     }
-
-    public String getURL() {
-        return url;
-    }
+    public void  setEntidadGrafica(EntidadGrafica i) {imagen = i;} 
+    
+    public  Posicion getPosicion() {return pos;}
+    public EntidadGrafica  getEntidadGrafica() {return imagen;}
+	public boolean esColisionable() {return superponer;}
+    public  void accept (Visitor visitor) {visitor.visit(this);}
 }

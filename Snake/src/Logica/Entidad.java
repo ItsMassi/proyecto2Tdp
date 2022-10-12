@@ -8,6 +8,8 @@ public abstract class Entidad {
     protected EntidadGrafica imagen;
     protected boolean superponer;
     
+    abstract void  setPosicion (int x, int y);
+    abstract void  setEntidadGrafica(EntidadGrafica i);
     abstract Posicion getPosicion();
     abstract EntidadGrafica  getEntidadGrafica();
     abstract boolean esColisionable();
