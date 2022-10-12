@@ -5,12 +5,10 @@ import Logica.Criatura;
 import Logica.EntidadGrafica;
 
 public class EstadoMuerta extends Estado {
-	protected Criatura criatura;
 	protected static final EntidadGrafica look = null;
 	protected static final float velocidad = 0;
 	
-	public EstadoMuerta (Criatura c) {
-		criatura = c;
+	public EstadoMuerta (Criatura criatura) {
 		criatura.setEstado(this);
 		criatura.morir();
 	}

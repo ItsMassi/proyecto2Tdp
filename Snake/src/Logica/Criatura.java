@@ -20,9 +20,11 @@ public class Criatura {
 	protected Estado miEstado;
 	protected Visitor miVisitor;
 	private int enReserva=0;
+	private Jugador jugador;
 	
 	//cuando se rea se crea en estado normal
-	public Criatura (int orientacion, EntidadGrafica look, Estado estado, Visitor visitor, PositionList<Posicion> posiciones) {
+	public Criatura (Jugador jugador, int orientacion, EntidadGrafica look, Estado estado, Visitor visitor, PositionList<Posicion> posiciones) {
+		this.jugador = jugador;
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
 		miEstado = new EstadoNormal (this); 
@@ -45,6 +47,7 @@ public class Criatura {
 	
 	public Estado getEstado () {return miEstado;}
 	
+	public Jugador getJugador() {return jugador;}
 	
 	public void lookear () {
 		EntidadGrafica imagen = miEstado.getAspecto();
@@ -166,5 +169,9 @@ public class Criatura {
 	public void accept (Visitor visitor) {
 		visitor.visit(this);
 	}
+
+
+	
+
 	
 }

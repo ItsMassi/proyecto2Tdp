@@ -5,12 +5,10 @@ import Logica.Criatura;
 import Logica.EntidadGrafica;
 
 public class EstadoLookeado extends Estado {
-	protected Criatura criatura;
 	protected static final EntidadGrafica look = new EntidadGrafica(App.class.getResource("LookLookeado.png"));
 	protected static final float velocidad = 1;
 	
-	public EstadoLookeado (Criatura c) {
-		criatura = c;
+	public EstadoLookeado (Criatura criatura) {
 		criatura.setEstado(this);
 		criatura.lookear();
 	}

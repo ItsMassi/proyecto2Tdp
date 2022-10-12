@@ -16,11 +16,13 @@ public class VisitorCriatura implements Visitor {
 	
 	public void visit (Alimento alimento) {
 		criatura.comer(alimento);
+		criatura.getJugador().setPuntaje (alimento.getPuntaje());
 	}
 	
 	public void visit (PowerUp powerUp) {
 		criatura.comer (powerUp);
 		criatura.setEstado (powerUp.getEstado());
+		criatura.getJugador().setPuntaje (powerUp.getPuntaje());
 	}
 	
 	public void visit (Celda celda) {}
