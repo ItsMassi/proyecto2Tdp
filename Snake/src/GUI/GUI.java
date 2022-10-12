@@ -11,12 +11,12 @@ import Logica.Criatura;
 import Logica.Jugador;
 import Logica.Nivel;
 
-public class GUI extends JFrame {
-	//Atributos de instancia 
+public class gui extends JFrame {
 	private Criatura snake;
 	private Jugador player;
 	private Cronometro cronometro;
 	private Nivel nivel;
+
 
 	private JPanel contentPane;
 
@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI frame = new GUI();
+					gui frame = new gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,16 +39,16 @@ public class GUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUI() {
-		JFrame frame= new JFrame();
-		Grilla p= new Grilla();
-		frame.add(p);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Snake");
-		frame.pack();
-		frame.setVisible(true);
-		frame.setLocationRelativeTo(null);
+	public gui() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 456, 469);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		Nivel juego = new Nivel();
+		contentPane.setLayout(new );
 	}
-	
 
 }
