@@ -8,18 +8,18 @@ public class Alimento extends Comida{
 	protected int puntaje;
 	protected boolean consumido;
 	protected EntidadGrafica imagen;
-	protected Estado estado;
+
 	protected Posicion pos;
 	protected boolean superponer;
 
 	
-    public Alimento(int t, int p, EntidadGrafica i, Estado e) {
+    public Alimento(int x, int y, int t, int p, EntidadGrafica i) {
+		pos = new Posicion(x, y);
 		tamano = t;
 		puntaje = p;
 		consumido = false;
 		imagen = i;
 		superponer = true;
-		estado = e;
 	}
     public int getPuntaje(){
 		return puntaje;
@@ -36,9 +36,6 @@ public class Alimento extends Comida{
     public  void accept (Visitor visitor) {
     	visitor.visit(this);
     }
-    public Estado getEstado() {
-		return estado;
-	}
     public EntidadGrafica getEntidadGrafica() {
     	return imagen;
     }

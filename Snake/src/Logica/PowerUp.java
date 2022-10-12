@@ -12,7 +12,8 @@ public class PowerUp extends Comida{
 	protected Posicion pos;
 	protected boolean superponer;
     
-    public PowerUp(int t, int p, EntidadGrafica i, Estado e) {
+    public PowerUp(int x, int y, int t, int p, EntidadGrafica i, Estado e) {
+		pos = new Posicion(x, y);
 		tamano = t;
 		puntaje = p;
 		consumido = false;

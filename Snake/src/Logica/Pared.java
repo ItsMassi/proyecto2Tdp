@@ -24,4 +24,15 @@ public class Pared  extends Entidad{
     public EntidadGrafica  getEntidadGrafica() {return imagen;}
 	public boolean esColisionable() {return superponer;}
     public  void accept (Visitor visitor) {visitor.visit(this);}
+
+
+    //main de testeo de url
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        System.out.println(System.getProperty("user.dir"));
+
+        System.out.println(System.getProperty("user.dir")+"lanos");
+    }
 }

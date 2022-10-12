@@ -10,7 +10,6 @@ abstract public class Comida extends Entidad{
     public abstract boolean getConsumido();
     public abstract void setConsumido();
     public abstract void accept (Visitor visitor);
-    public abstract Estado getEstado();
     public abstract EntidadGrafica  getEntidadGrafica();
     public abstract void  setPosicion (int x, int y);
     public abstract void  setEntidadGrafica(EntidadGrafica i);
