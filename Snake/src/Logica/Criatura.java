@@ -75,6 +75,8 @@ public class Criatura {
 				cola.setPosicion(null);
 				cola.setEntidadGrafica(null);
 			}
+			else 
+				enReserva--;
 		} catch (InvalidPositionException | EmptyListException e) {e.printStackTrace();}
 		
 		
@@ -86,7 +88,8 @@ public class Criatura {
 				Parte cabeza = miCuerpo.first().element();	
 				Posicion PosNuevaCabeza = desplazarEnY(cabeza, 1);
 				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
-			}
+				orientacion = 1;
+			} 
 		} catch (EmptyListException e) {e.printStackTrace();}
 		
 		entidad.accept(miVisitor);
@@ -100,6 +103,7 @@ public class Criatura {
 				Parte cabeza = miCuerpo.first().element();	
 				Posicion PosNuevaCabeza = desplazarEnY(cabeza, -1);
 				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
+				orientacion = - 1;
 			}
 		} catch (EmptyListException e) {e.printStackTrace();}
 		
@@ -114,6 +118,7 @@ public class Criatura {
 				Parte cabeza = miCuerpo.first().element();	
 				Posicion PosNuevaCabeza = desplazarEnX(cabeza, -1);
 				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
+				orientacion = -2;
 			}
 		} catch (EmptyListException e) {e.printStackTrace();}
 		
@@ -128,6 +133,7 @@ public class Criatura {
 				Parte cabeza = miCuerpo.first().element();	
 				Posicion PosNuevaCabeza = desplazarEnX(cabeza, 1);
 				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
+				orientacion = 2;
 			}
 		} catch (EmptyListException e) {e.printStackTrace();}
 		
