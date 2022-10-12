@@ -1,17 +1,15 @@
 package Estado;
 
-
-
 import Logica.App;
 import Logica.Criatura;
 import Logica.EntidadGrafica;
 
-public class EstadoNormal extends Estado {
+public class EstadoLento extends Estado {
 	protected Criatura criatura;
-	protected static final EntidadGrafica look = new EntidadGrafica(App.class.getResource("LookNormal.png"));
-	protected static final float velocidad = 1;
+	protected static final EntidadGrafica look = new EntidadGrafica(App.class.getResource("LookLento.png"));
+	protected static final float velocidad = (float) 0.5;
 	
-	public EstadoNormal (Criatura c) {
+	public EstadoLento (Criatura c) {
 		criatura = c;
 		criatura.setEstado(this);
 		criatura.lookear();
@@ -19,5 +17,4 @@ public class EstadoNormal extends Estado {
 	
 	public float getVelocidad() {return velocidad;}
 	public EntidadGrafica getAspecto () {return look;}
-
 }

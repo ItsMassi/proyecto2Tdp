@@ -2,6 +2,7 @@ package Logica;
 
 
 import java.util.Iterator;
+
 import Estado.*;
 import Excepciones.EmptyListException;
 import Excepciones.InvalidPositionException;
@@ -18,7 +19,7 @@ public class Criatura {
 	protected PositionList<Parte> miCuerpo;
 	protected Estado miEstado;
 	protected Visitor miVisitor;
-	protected int enReserva=0;
+	private int enReserva=0;
 	
 	//cuando se rea se crea en estado normal
 	public Criatura (int orientacion, EntidadGrafica look, Estado estado, Visitor visitor, PositionList<Posicion> posiciones) {
@@ -34,8 +35,17 @@ public class Criatura {
 	
 	
 	public void setOrientacion (int orientacion) {this.orientacion = orientacion;}
+		
+	public void setEstado (Estado estado) {miEstado=estado;}
+
+	public int getOrientacion () {return orientacion;}
 	
-	public void setLook () {
+	public Iterator<Parte> getCuerpo () {return miCuerpo.iterator();}
+	
+	public Estado getEstado () {return miEstado;}
+	
+	
+	public void lookear () {
 		EntidadGrafica imagen = miEstado.getAspecto();
 		Iterator <Parte>  it = miCuerpo.iterator();
 		while (it.hasNext()) {
@@ -43,8 +53,18 @@ public class Criatura {
 		}
 	}
 	
-	public void setEstado (Estado estado) {miEstado=estado;}
-	
+	public 	Criatura comer (Comida c) {
+		try {
+			Parte cola = miCuerpo.last().element();
+			for (int i=0; i< c.getTamaño(); i++) {
+					miCuerpo.addLast(cola);
+					enReserva ++;
+			}
+		} catch (EmptyListException e) {e.printStackTrace();}
+		
+		return this;
+	}
+		
 	public void morir () {
 		while (!miCuerpo.isEmpty()) {
 			try {

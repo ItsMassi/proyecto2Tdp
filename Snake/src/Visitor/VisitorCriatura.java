@@ -11,27 +11,27 @@ public class VisitorCriatura implements Visitor {
 	Criatura criatura;
 	
 	public VisitorCriatura (Criatura c) {
-		criatura=c;
+		criatura = c;
 	}
 	
 	public void visit (Alimento alimento) {
-		
-		
+		criatura.comer(alimento);
 	}
 	
 	public void visit (PowerUp powerUp) {
-		
+		criatura.comer (powerUp);
+		criatura.setEstado (powerUp.getEstado());
 	}
 	
-	public void visit (Celda celda) {
-		
+	public void visit (Celda celda) {}
+	
+	public void visit (Pared pared) {
+		criatura.morir();
 	}
 	
-	public void visit (Pared pared) {}
-	public void visit (Parte parte) {}
-	
-	public void visit (Criatura criatura) {
-		
-		
+	public void visit (Parte parte) {
+		criatura.morir();
 	}
+	
+	public void visit (Criatura criatura) {}
 }
