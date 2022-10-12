@@ -22,7 +22,8 @@ public class Nivel {
         nivel = reader.buildNivel(this);
     }
 
-    public void agregarComida(){
+    public Posicion generatePosicionValida(){//<-dentro de esto una entidad
+
         //crea una posicion random para la comida
         int posX = (int) ((Math.random() * (19 - 1)) + 1);
         int posY = (int) ((Math.random() * (19 - 1)) + 1);
@@ -33,7 +34,12 @@ public class Nivel {
             posY = (int) ((Math.random() * (19 - 1)) + 1);  
         }
 
-        // nivel[posX][posY] = new Comida(zzzzzzzzzzzzzzzzzzzzzzzzzz);
+        return new Posicion(posX, posY);
+    }
+
+    public void agregarComida(){
+        Posicion posicion = generatePosicionValida();
+        nivel[posicion.getX()][posicion.getY()] = new Alimento(posicion.getX(), posicion.getY());
     }
 
     public Entidad[][] getNivel(){return nivel;}
