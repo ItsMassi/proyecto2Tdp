@@ -12,6 +12,7 @@ public class Nivel {
   String urlAlimento = "";
   String urlPowerup = "";
   String urlPared = "";
+  Criatura criatura;
 
   public Nivel() {
     for (int i = 0; i < arr.length; i++) {
@@ -77,7 +78,10 @@ public class Nivel {
   public Entidad[][] getNivel() {
     return nivel;
   }
-
+  
+  public Criatura getCriatura () {
+	  return criatura;
+  }
   public int getFilas() {
     return nivel.length;
   }
