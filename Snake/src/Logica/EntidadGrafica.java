@@ -1,19 +1,18 @@
 package Logica;
 
-import java.net.URL;
 
 public class EntidadGrafica {
 
-	private URL url;
+	private String url;
 	
-	public EntidadGrafica (URL url) {
+	public EntidadGrafica (String url) {
 		this.url=url;
 	}
 	
-	public void setURL(URL url) {
+	public void setURL(String url) {
 		this.url=url;
 	}
 	
-	public URL getURL () {return url;}
+	public String getURL () {return url;}
 	
 }

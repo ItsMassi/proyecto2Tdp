@@ -9,6 +9,10 @@ public class Jugador{
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
+    
+    public void aumentarPuntaje(int puntaje) {
+        this.puntaje += puntaje;    	
+    }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;

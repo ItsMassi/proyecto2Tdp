@@ -22,7 +22,7 @@ public class VisitorCriatura implements Visitor {
 	public void visit (PowerUp powerUp) {
 		criatura.comer (powerUp);
 		criatura.setEstado (powerUp.getEstado());
-		criatura.getJugador().setPuntaje (powerUp.getPuntaje());
+		criatura.getJugador().aumentarPuntaje (powerUp.getPuntaje());
 	}
 	
 	public void visit (Celda celda) {}

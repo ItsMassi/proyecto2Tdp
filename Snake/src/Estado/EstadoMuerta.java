@@ -1,6 +1,6 @@
 package Estado;
 
-import Logica.App;
+
 import Logica.Criatura;
 import Logica.EntidadGrafica;
 
