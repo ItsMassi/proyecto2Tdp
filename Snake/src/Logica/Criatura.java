@@ -56,6 +56,27 @@ public class Criatura {
 			it.next().setEntidadGrafica(imagen);
 		}
 	}
+	public Posicion getMovimiento (int o) {
+		Posicion pos = null;
+			try {
+				Parte cabeza = miCuerpo.first().element();
+			
+			switch (o) {
+				case 1: {pos = desplazarEnY(cabeza, 1);
+				break;}
+				case -1: {pos = desplazarEnY(cabeza, -1);
+				break;}
+				case 2: {pos = desplazarEnX(cabeza, 1);
+				break;}
+				case -2: {pos = desplazarEnY(cabeza, -1);
+				break;}
+				
+			}
+		} catch (EmptyListException e) {e.printStackTrace();}
+		
+		return pos;
+		
+	}
 	
 	public 	Criatura comer (Comida c) {
 		try {
