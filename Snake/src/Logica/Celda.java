@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.net.URL;
 
-public class Pared  extends Entidad{
+public class Celda extends Entidad{
     Posicion pos;
     String url;
     protected boolean superponer;
 
-    Pared(int x, int y) {
+    Celda(int x, int y) {
         pos = new Posicion(x, y);
-        url = App.class.getResource("wallcell.png").getPath();
+        url = App.class.getResource("bgcell.png").getPath();
     }
 
     public Posicion getPos() {
@@ -22,5 +22,4 @@ public class Pared  extends Entidad{
     public String getURL() {
         return url;
     }
-
 }

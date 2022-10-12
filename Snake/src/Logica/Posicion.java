@@ -1,3 +1,4 @@
+package Logica;
 //Dani
 public class Posicion {
 
