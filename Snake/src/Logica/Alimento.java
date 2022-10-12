@@ -1,5 +1,6 @@
 package Logica;
 
+import Estado.Estado;
 import Visitor.Visitor;
 
 public class Alimento extends Comida{
@@ -9,14 +10,16 @@ public class Alimento extends Comida{
     protected int tamano;
     protected boolean consumido;
     protected int puntaje;
+    protected Estado estado;
 
 	
-    public Alimento(int t, int p, EntidadGrafica i) {
+    public Alimento(int t, int p, EntidadGrafica i, Estado e) {
 		tamano = t;
 		puntaje = p;
 		consumido = false;
 		imagen = i;
 		superponer = true;
+		estado = e;
 	}
     public void setPosicion (int x, int y) {
     	pos.setX(x);

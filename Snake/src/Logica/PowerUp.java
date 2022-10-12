@@ -12,12 +12,13 @@ public class PowerUp extends Comida{
     protected Estado estado;
     protected int puntaje;
     
-    public PowerUp(int t, int p, EntidadGrafica i) {
+    public PowerUp(int t, int p, EntidadGrafica i, Estado e) {
 		tamano = t;
 		puntaje = p;
 		consumido = false;
 		imagen = i;
 		superponer=true;
+		estado = e;
 	}
     public void  setPosicion (int x, int y) {
     	pos.setX(x);

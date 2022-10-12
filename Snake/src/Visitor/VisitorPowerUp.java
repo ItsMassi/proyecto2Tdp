@@ -26,7 +26,10 @@ public class VisitorPowerUp implements Visitor {
 		
 	}
 	public void visit(Parte parte) {
-		
+		power.setConsumido();
+		power.setPosicion(0, 0);
+		power.setEntidadGrafica(null);
+		parte.accept(this);
 	}
 	public void visit(Criatura criature){
 		power.setConsumido();

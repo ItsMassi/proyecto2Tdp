@@ -27,7 +27,10 @@ public class VisitorAlimento implements Visitor{
 		
 	}
 	public void visit(Parte parte) {
-		
+		alimento.setConsumido();
+		alimento.setEntidadGrafica(null);
+		alimento.setPosicion(0,0);
+		parte.accept(this);
 	}
 	public void visit(Criatura criature) {
 		alimento.setConsumido();
