@@ -8,23 +8,47 @@ public class PowerUp extends Comida{
 	protected EntidadGrafica imagen;
 	protected boolean superponer;
     protected int tamano;
-    protected int consumido;
+    protected boolean consumido;
     protected Estado estado;
-	
+    protected int puntaje;
     
-// constructor con posicion y entidadGrafica
-    
+    public PowerUp(int t, int p, EntidadGrafica i) {
+		tamano = t;
+		puntaje = p;
+		consumido = false;
+		imagen = i;
+		superponer=true;
+	}
     public void  setPosicion (int x, int y) {
     	pos.setX(x);
     	pos.setY(y);
     }
-    public void  setEntidadGrafica(EntidadGrafica i) {imagen = i;} 
-    
-    public  Posicion getPosicion() {return pos;}
-    public EntidadGrafica  getEntidadGrafica() {return imagen;}
-	public boolean esColisionable() {return superponer;}
-	public int getTamano() {return tamano;}
-	public Estado getEstado() {return estado;}
-    public  void accept (Visitor visitor) {visitor.visit(this);}
+    public void  setEntidadGrafica(EntidadGrafica i) {
+    	imagen = i;
+    } 
+    public  Posicion getPosicion() {
+    	return pos;
+    }
+    public EntidadGrafica  getEntidadGrafica() {
+    	return imagen;
+    }
+	public boolean esColisionable() {
+		return superponer;
+	}
+	public int getTamano() {
+		return tamano;
+	}
+	public Estado getEstado() {
+		return estado;
+	}
+    public  void accept (Visitor visitor) {
+    	visitor.visit(this);
+    }
+	public int getPuntaje() {
+		return puntaje;
+	}
+	public void setConsumido() {
+		consumido = true;
+	}
 
 }

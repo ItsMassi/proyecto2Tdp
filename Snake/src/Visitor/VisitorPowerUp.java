@@ -8,11 +8,30 @@ import Logica.Parte;
 import Logica.PowerUp;
 
 public class VisitorPowerUp implements Visitor {
-	public void visit (Alimento alimento) {}
-	public void visit (PowerUp powerUp) {}
-	public void visit (Celda celda) {}
-	public void visit (Pared pared) {}
-	public void visit (Parte parte) {}
-	public void visit (Criatura criatura) {}
-
+	protected PowerUp power;
+	
+	public VisitorPowerUp(PowerUp pow) {
+		power = pow;
+	}
+	public void visit(Alimento alimento) {
+		
+	}
+	public void visit(PowerUp power) {
+		
+	}
+	public void visit(Celda cel) {
+		
+	}
+	public void visit(Pared pared) {
+		
+	}
+	public void visit(Parte parte) {
+		
+	}
+	public void visit(Criatura criature){
+		power.setConsumido();
+		power.setPosicion(0, 0);
+		power.setEntidadGrafica(null);
+		criature.accept(this);
+	}
 }
