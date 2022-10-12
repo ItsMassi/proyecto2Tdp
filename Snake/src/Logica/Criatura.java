@@ -57,7 +57,7 @@ public class Criatura {
 	public 	Criatura comer (Comida c) {
 		try {
 			Parte cola = miCuerpo.last().element();
-			for (int i=0; i< c.getTamaño(); i++) {
+			for (int i=0; i< c.getTamano(); i++) {
 					miCuerpo.addLast(cola);
 					enReserva ++;
 			}
