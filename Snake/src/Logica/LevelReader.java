@@ -1,3 +1,4 @@
+package Logica;
 //Dani
 import java.io.File;
 import java.util.LinkedList;
@@ -75,10 +76,10 @@ public class LevelReader {
         for (int x = 0; x < linea.length(); x++) {
           char caracter = linea.charAt(x);
           if (caracter == 'o') {
-            nivel.modificar(x, y, new Alimento(x,y));
+            nivel.modificar(x, y, new Comida(x,y));
           }else
           if(caracter == '#'){
-            nivel.modificar(x, y, new cell(x,y));
+            nivel.modificar(x, y, new Celda(x,y));
           }else{
             nivel.modificar(x, y, new Pared(x,y));
           }

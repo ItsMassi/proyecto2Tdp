@@ -1,3 +1,4 @@
+package Logica;
 //Dani
 import java.io.File;
 import java.util.LinkedList;
@@ -7,6 +8,7 @@ import java.net.URL;
 public class Pared  extends Entidad{
     Posicion pos;
     String url;
+    protected boolean superponer;
 
     Pared(int x, int y) {
         pos = new Posicion(x, y);
@@ -17,7 +19,7 @@ public class Pared  extends Entidad{
         return pos;
     }
 
-    public String getUrl() {
+    public String getURL() {
         return url;
     }
 

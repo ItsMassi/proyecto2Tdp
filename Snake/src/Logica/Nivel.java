@@ -1,5 +1,7 @@
+package Logica;
 //Dani
 public class Nivel {
+	
     Entidad[][] nivel;
     LevelReader reader = new LevelReader();
 
@@ -7,7 +9,7 @@ public class Nivel {
         nivel  = new Entidad[20][20];
         for(int x = 0; x < nivel.length; x++){
             for(int y = 0; y < nivel[0].length; y++){
-                nivel[x][y]=new cell(x,y);
+                nivel[x][y]=new Celda(x,y);
             }
         }
     }
@@ -64,15 +66,15 @@ public class Nivel {
           // Loop through all elements of current row
           for (int j = nivel[i].length - 1; j >= 0; j--) {
             //System.out.println("Posicion: ("+i +","+j);
-            if(nivel[i][j].getUrl().equals(urlAlimento)){
+            if(nivel[i][j].getURL().equals(urlAlimento)){
                 System.out.print('o');
                 //System.out.println(" = "+ nivel[i][j].getUrl());
             }else
-            if(nivel[i][j].getUrl().equals(urlPared)){
+            if(nivel[i][j].getURL().equals(urlPared)){
                 System.out.print('x');
                // System.out.println(" = "+ nivel[i][j].getUrl());
             }else
-            if(nivel[i][j].getUrl().equals(urlcell)){
+            if(nivel[i][j].getURL().equals(urlcell)){
                 System.out.print('#');
                 //System.out.println(" = "+ nivel[i][j].getUrl());
             }else{
@@ -87,11 +89,11 @@ public class Nivel {
         System.out.println("nivela de: " + nivel.length + "x" + nivel[0].length);
         //System.out.println("Cant de comida: " + comida.size());
         //System.out.println("Cant de muros: " + muro.size());
-        System.out.println("comida (1,18): " + nivel[1][18].getUrl()); //deberia ser '@'
-        System.out.println("(0,19): " + nivel[0][19].getUrl()); //deberia ser 'a'
-        System.out.println("(19,19): " + nivel[19][19].getUrl()); //deberia ser 'b'
-        System.out.println("(0,0): " + nivel[0][0].getUrl()); //deberia ser 'c'
-        System.out.println("(19,0): " + nivel[19][0].getUrl()); //deberia ser 'd'
+        System.out.println("comida (1,18): " + nivel[1][18].getURL()); //deberia ser '@'
+        System.out.println("(0,19): " + nivel[0][19].getURL()); //deberia ser 'a'
+        System.out.println("(19,19): " + nivel[19][19].getURL()); //deberia ser 'b'
+        System.out.println("(0,0): " + nivel[0][0].getURL()); //deberia ser 'c'
+        System.out.println("(19,0): " + nivel[19][0].getURL()); //deberia ser 'd'
         
       }
 
