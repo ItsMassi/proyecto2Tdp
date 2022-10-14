@@ -56,8 +56,13 @@ public class Gui extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+<<<<<<< HEAD
 		 Nivel juego = new Nivel ();
 		 criatura = juego.getCriatura();
+=======
+		 
+		criatura = nivel.getCriatura();
+>>>>>>> 4091d7c5b1a98fbc5dfc562ddc8a473509c1f3c5
 		contentPane.setLayout(new GridLayout(20,20));
 		
 		for(int x=0; x < nivel.getFilas(); x++) {
