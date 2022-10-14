@@ -2,6 +2,7 @@ package Logica;
 import Estado.*;
 import TDALista.*;
 
+import java.io.File;
 import java.net.URL;
 
 //Dani
@@ -9,7 +10,7 @@ public class Nivel {
   Jugador jugador = new Jugador();
   Entidad[][] nivel;
   LevelReader reader = new LevelReader(1);
-  String[] arr = reader.getDirImagenes().list();
+  File[] arr = reader.getDirImagenes().listFiles();
   String urlCelda = "";
   String urlAlimento = "";
   String urlPowerup = "";
@@ -26,24 +27,31 @@ public class Nivel {
   public Nivel() {
     //buscamos los componentes de las imagenes
     for (int i = 0; i < arr.length; i++) {
-      if (arr[i].contains("bgcell")) {
-        urlCelda = arr[i];
+
+      System.out.println("empieza a asignar las imagenes");
+      if (arr[i].getAbsolutePath().contains("bgcell")) {
+        urlCelda = arr[i].getAbsolutePath();
+        System.out.println(urlCelda);
       }
 
-      if (arr[i].contains("foodcell")) {
-        urlAlimento = arr[i];
+      if (arr[i].getAbsolutePath().contains("foodcell")) {
+        urlAlimento = arr[i].getAbsolutePath();
+        System.out.println(urlAlimento);
       }
 
-      if (arr[i].contains("pucell")) {
-        urlPowerup = arr[i];
+      if (arr[i].getAbsolutePath().contains("pucell")) {
+        urlPowerup = arr[i].getAbsolutePath();
+        System.out.println(urlPowerup);
       }
 
-      if (arr[i].contains("wallcell")) {
-        urlPared = arr[i];
+      if (arr[i].getAbsolutePath().contains("wallcell")) {
+        urlPared = arr[i].getAbsolutePath();
+        System.out.println(urlPared);
       }
 
-      if(arr[i].contains("bodycell")){
-        urlCuerpo = arr[i];
+      if(arr[i].getAbsolutePath().contains("bodycell")){
+        urlCuerpo = arr[i].getAbsolutePath();
+        System.out.println(urlCuerpo);
       }
     }
     
@@ -123,17 +131,17 @@ public class Nivel {
   public void display() {
     System.out.println("Iniciando Display=====================");
 
-    /*
-         * System.out.println("URL base:     +");
+
+          System.out.println("URL base:     +");
         System.out.println(urlAlimento);
         System.out.println(urlPared);
-        System.out.println(urlcell);
+        System.out.println(urlCelda);
         System.out.println("+++++++++++++++++++++++++++++++++");
-        */
+        
     for (int i = 0; i < nivel.length; i++) {
       // Loop through all elements of current row
       for (int j = nivel[i].length - 1; j >= 0; j--) {
-        //System.out.println("Posicion: ("+i +","+j);
+        System.out.println(nivel[i][j].getEntidadGrafica().getURL());
         if (nivel[i][j].getEntidadGrafica().getURL().equals(urlAlimento)) {
           System.out.print('o');
           //System.out.println(" = "+ nivel[i][j].getUrl());

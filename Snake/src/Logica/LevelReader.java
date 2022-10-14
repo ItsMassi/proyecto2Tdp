@@ -101,27 +101,27 @@ public class LevelReader {
 
   public Entidad[][] buildNivel(Nivel nivel) {
     File file = new File(path); // abrimos el archivo dentro de java
-    String[] arr = DirImagenes.list();
+    File[] arr = DirImagenes.listFiles();
     String urlCelda = "";
     String urlAlimento = "";
     String urlPowerup = "";
     String urlPared = "";
 
     for (int i = 0; i < arr.length; i++) {
-      if (arr[i].contains("bgcell")) {
-        urlCelda = arr[i];
+      if (arr[i].getAbsolutePath().contains("bgcell")) {
+        urlCelda = arr[i].getAbsolutePath();
       }
 
-      if (arr[i].contains("foodcell")) {
-        urlAlimento = arr[i];
+      if (arr[i].getAbsolutePath().contains("foodcell")) {
+        urlAlimento = arr[i].getAbsolutePath();
       }
 
-      if (arr[i].contains("pucell")) {
-        urlPowerup = arr[i];
+      if (arr[i].getAbsolutePath().contains("pucell")) {
+        urlPowerup = arr[i].getAbsolutePath();
       }
 
-      if (arr[i].contains("wallcell")) {
-        urlPared = arr[i];
+      if (arr[i].getAbsolutePath().contains("wallcell")) {
+        urlPared = arr[i].getAbsolutePath();
       }
     }
 
