@@ -57,7 +57,7 @@ public class gui extends JFrame {
 		setContentPane(contentPane);
 		
 		 
-		 criatura = nivel.getCriatura();
+		criatura = nivel.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
 		for(int x=0; x < nivel.getFilas(); x++) {
@@ -103,7 +103,7 @@ public class gui extends JFrame {
 		if(key== KeyEvent.VK_LEFT) {
 			Posicion pos = criatura.getMovimiento(-2);
 			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverIquierda(entidad);
+			criatura.moverIzquierda(entidad);
 		}
 		
 		if(key==KeyEvent.VK_UP) {

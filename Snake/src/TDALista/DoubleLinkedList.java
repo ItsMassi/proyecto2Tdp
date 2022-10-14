@@ -207,7 +207,7 @@ public class DoubleLinkedList<E> implements PositionList<E>{
 	 */
 
 	public Iterator<E> iterator() {
-		Iterator<E> it = new ElementIterador<E>(this); 
+		Iterator<E> it = new ElementIterator<E>(this); 
 		return it;
 	}
 	

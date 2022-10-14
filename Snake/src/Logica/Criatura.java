@@ -22,12 +22,12 @@ public class Criatura {
 	private int enReserva=0;
 	private Jugador jugador;
 	
-	//cuando se rea se crea en estado normal
+	//cuando se crea se crea en estado normal
 	public Criatura (Jugador jugador, int orientacion, Estado estado, PositionList<Posicion> posiciones) {
 		this.jugador = jugador;
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
-		miEstado = estado; 
+		miEstado = estado;
 		Iterator <Posicion>  it = posiciones.iterator();
 		while (it.hasNext()) {
 			Posicion p = it.next();
@@ -39,7 +39,10 @@ public class Criatura {
 	
 	public void setOrientacion (int orientacion) {this.orientacion = orientacion;}
 		
-	public void setEstado (Estado estado) {miEstado=estado;}
+	public void setEstado (Estado estado) {
+		miEstado=estado;
+		lookear();
+	}
 
 	public int getOrientacion () {return orientacion;}
 	
@@ -49,7 +52,7 @@ public class Criatura {
 	
 	public Jugador getJugador() {return jugador;}
 	
-	public void lookear () {
+	private void lookear () {
 		EntidadGrafica imagen = miEstado.getAspecto();
 		Iterator <Parte>  it = miCuerpo.iterator();
 		while (it.hasNext()) {
