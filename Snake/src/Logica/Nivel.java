@@ -61,16 +61,23 @@ public class Nivel {
 
     //creamos la criatura
     PositionList<Posicion> lista = new DoubleLinkedList<Posicion>();
-    lista.addLast(new Posicion(10, 10));
-    lista.addLast(new Posicion(11, 10));
     lista.addLast(new Posicion(12, 10));
+    lista.addLast(new Posicion(11, 10));
+    lista.addLast(new Posicion(10, 10));
 
     criatura = new Criatura (jugador, 2, est,  lista);
     Iterator<Parte> iterador = criatura.getCuerpo();
+    System.out.println("en nivel");
+	Iterator <Parte> it = criatura.getCuerpo();
+	while (it.hasNext()) {
+		Parte nuevaCabeza = it.next();
+		System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
+	}
     while (iterador.hasNext()) {
       Parte parte = iterador.next();
       nivel[parte.getPosicion().getX()][parte.getPosicion().getY()] = parte;
     }
+    
 
     //inicializamos la lista
     /* 
@@ -84,13 +91,15 @@ public class Nivel {
   }
   
   //FALTA CORREGIR
-  public void actualizar(){
+  public Nivel actualizar(){
     Iterator<Parte> iterador = criatura.getCuerpo();
     while (iterador.hasNext()) {
       Parte parte = iterador.next();
       nivel[parte.getPosicion().getX()][parte.getPosicion().getY()] = parte;
     }
+    return this;
   }
+  
   public void modificar(int x, int y, Entidad ent) {
     nivel[x][y] = ent;
   }

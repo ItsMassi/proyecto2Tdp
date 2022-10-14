@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import Nodo.*;
 import Logica.Criatura;
 import Logica.Entidad;
 import Logica.Jugador;
@@ -63,8 +63,8 @@ public class GUI extends JFrame {
 		 criatura = nivel.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
-		for(int x=0; x < nivel.getFilas(); x++) {
-			for(int y= 0; y < nivel.getColumnas(); y++) {
+		for(int y=0; y < nivel.getColumnas(); y++) {
+			for(int x= 0; x < nivel.getFilas(); x++) {
 				Entidad e = nivel.getEntidad(x, y);
 				String imagen= e.getEntidadGrafica().getURL();
 				ImageIcon grafico= new ImageIcon(imagen);
@@ -87,16 +87,25 @@ public class GUI extends JFrame {
 		contentPane.addKeyListener(new KeyListener() {
 			public void keyPressed (KeyEvent e) {
 				int key = e.getKeyCode();
+				Parte cola;
+				Iterator <Parte> it =  criatura.getCuerpo();
+				while(it.hasNext()) {
+					cola = it.next();
+				}
+				int reserva = criatura.getReserva();
 				if(key == KeyEvent.VK_RIGHT) {
-					Iterator <Parte> it =  criatura.getCuerpo();
-					while (it.hasNext()) {
-						Parte nuevaCabeza = it.next();
-						System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
-					}
+					/*
+					 * Iterator <Parte> it =  criatura.getCuerpo();
+					 * while (it.hasNext()) {
+						//Parte nuevaCabeza = it.next();
+						//System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
+						}
+					*/
 					Posicion pos = criatura.getMovimiento(2);
 					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
 					criatura.moverDerecha(entidad);
-					nivel.actualizar();
+					nivel.actualizar(cola.getPosicion(), reserva);
+					rePintar();
 				}
 				
 				if(key== KeyEvent.VK_LEFT) {
@@ -131,6 +140,30 @@ public class GUI extends JFrame {
 
 		});
 				
+	}
+	
+	
+	private void rePintar () {
+		nivel = nivel.actualizar();
+		for(int y=0; y < nivel.getColumnas(); y++) {
+			for(int x= 0; x < nivel.getFilas(); x++) {
+				Entidad e = nivel.getEntidad(x, y);
+				String imagen= e.getEntidadGrafica().getURL();
+				ImageIcon grafico= new ImageIcon(imagen);
+				JLabel label=  new JLabel ();
+				label.setIcon(grafico);
+				contentPane.add(label);
+				
+				label.addComponentListener(new ComponentAdapter() {
+					public void componentResized(ComponentEvent e) {
+						reDimensionar(label,grafico);
+						label.setIcon(grafico);
+					}
+				});
+				
+				
+			}
+		}
 	}
 	
 	private void reDimensionar(JLabel label , ImageIcon  grafico){
