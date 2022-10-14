@@ -20,7 +20,7 @@ import Logica.Jugador;
 import Logica.Nivel;
 import Logica.Posicion;
 
-public class gui extends JFrame {
+public class Gui extends JFrame {
 	private Criatura criatura;
 	private Jugador player;
 	//private Cronometro cronometro;
@@ -36,7 +36,7 @@ public class gui extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gui frame = new gui();
+					Gui frame = new Gui();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class gui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public gui() {
+	public Gui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 456, 469);
 		contentPane = new JPanel();
@@ -56,8 +56,13 @@ public class gui extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+<<<<<<< HEAD
+		 Nivel juego = new Nivel ();
+		 criatura = juego.getCriatura();
+=======
 		 
 		criatura = nivel.getCriatura();
+>>>>>>> 4091d7c5b1a98fbc5dfc562ddc8a473509c1f3c5
 		contentPane.setLayout(new GridLayout(20,20));
 		
 		for(int x=0; x < nivel.getFilas(); x++) {

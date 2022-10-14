@@ -28,6 +28,7 @@ public class Criatura {
 		miEstado = estado;
 		EntidadGrafica imagen = miEstado.getAspecto();
 		Iterator <Posicion>  it = posiciones.iterator();
+		miEstado = estado; 
 		while (it.hasNext()) {
 			Posicion p = it.next();
 			miCuerpo.addLast(new Parte (p.getX(), p.getY(), imagen));
