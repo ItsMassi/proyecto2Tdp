@@ -18,6 +18,7 @@ import Logica.Criatura;
 import Logica.Entidad;
 import Logica.Jugador;
 import Logica.Nivel;
+import Logica.Posicion;
 
 public class gui extends JFrame {
 	private Criatura criatura;
@@ -55,7 +56,7 @@ public class gui extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		 Nivel juego = new Nivel();
+		 
 		 criatura = nivel.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
@@ -102,7 +103,7 @@ public class gui extends JFrame {
 		if(key== KeyEvent.VK_LEFT) {
 			Posicion pos = criatura.getMovimiento(-2);
 			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverIzquierda(entidad);
+			criatura.moverIquierda(entidad);
 		}
 		
 		if(key==KeyEvent.VK_UP) {
