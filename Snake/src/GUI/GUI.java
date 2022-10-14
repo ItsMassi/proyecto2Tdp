@@ -87,7 +87,7 @@ public class GUI extends JFrame {
 		contentPane.addKeyListener(new KeyListener() {
 			public void keyPressed (KeyEvent e) {
 				int key = e.getKeyCode();
-				Parte cola;
+				Parte cola=null;
 				Iterator <Parte> it =  criatura.getCuerpo();
 				while(it.hasNext()) {
 					cola = it.next();
@@ -104,8 +104,7 @@ public class GUI extends JFrame {
 					Posicion pos = criatura.getMovimiento(2);
 					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
 					criatura.moverDerecha(entidad);
-					nivel.actualizar(cola.getPosicion(), reserva);
-					rePintar();
+					rePintar(cola.getPosicion(), reserva);
 				}
 				
 				if(key== KeyEvent.VK_LEFT) {
@@ -143,8 +142,8 @@ public class GUI extends JFrame {
 	}
 	
 	
-	private void rePintar () {
-		nivel = nivel.actualizar();
+	private void rePintar (Position p, int r) {
+		nivel = nivel.actualizar(p,r);
 		for(int y=0; y < nivel.getColumnas(); y++) {
 			for(int x= 0; x < nivel.getFilas(); x++) {
 				Entidad e = nivel.getEntidad(x, y);
