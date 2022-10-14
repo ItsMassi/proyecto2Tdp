@@ -85,9 +85,7 @@ public class LevelReader {
           if (map[x][y] == 'x') {
             muro.add(new Entry<Integer, Integer>(x, y));
           }
-          System.out.println(
-            "Posicion: (" + x + "," + y + ") | char: " + map[x][y]
-          );
+          //System.out.println("Posicion: (" + x + "," + y + ") | char: " + map[x][y]);
         }
         //cuando termina cambiamos a la linea de abajo
         y--;
@@ -100,10 +98,10 @@ public class LevelReader {
   }
 
   public Entidad[][] buildNivel(Nivel nivel, int stage) {
-    File file = new File(path); // abrimos el archivo dentro de java
+    File file; // abrimos el archivo dentro de java
     File[] arrLvl = DirPlanos.listFiles();
     file = arrLvl[stage-1];
-    System.out.println("$$$$$$$$$$$ NIVEL A CREAR: "+file.getAbsolutePath());
+    System.out.println("$$$$$$$$$$$ NIVEL A CREAR: "+arrLvl[stage]);
     File[] arr = DirImagenes.listFiles();
     String urlCelda = "";
     String urlAlimento = "";
@@ -164,9 +162,7 @@ public class LevelReader {
               new Pared(x, y, new EntidadGrafica(urlPared))
             );
           }
-          System.out.println(
-            "Posicion: (" + x + "," + y + ") | char: " + caracter
-          );
+          //System.out.println("Posicion: (" + x + "," + y + ") | char: " + caracter);
         }
         //cuando termina cambiamos a la linea de abajo
         y--;

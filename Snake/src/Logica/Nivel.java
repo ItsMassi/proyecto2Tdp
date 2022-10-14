@@ -8,8 +8,8 @@ import java.net.URL;
 //Dani
 public class Nivel {
   Jugador jugador = new Jugador();
+  LevelReader reader = new LevelReader(2);
   Entidad[][] nivel = new Entidad[20][20];
-  LevelReader reader = new LevelReader(1);
   File[] arr = reader.getDirImagenes().listFiles();
   String urlCelda = "";
   String urlAlimento = "";
@@ -31,27 +31,27 @@ public class Nivel {
       System.out.println("empieza a asignar las imagenes");
       if (arr[i].getAbsolutePath().contains("bgcell")) {
         urlCelda = arr[i].getAbsolutePath();
-        System.out.println(urlCelda);
+        //System.out.println(urlCelda);
       }
 
       if (arr[i].getAbsolutePath().contains("foodcell")) {
         urlAlimento = arr[i].getAbsolutePath();
-        System.out.println(urlAlimento);
+        //System.out.println(urlAlimento);
       }
 
       if (arr[i].getAbsolutePath().contains("pucell")) {
         urlPowerup = arr[i].getAbsolutePath();
-        System.out.println(urlPowerup);
+        //System.out.println(urlPowerup);
       }
 
       if (arr[i].getAbsolutePath().contains("wallcell")) {
         urlPared = arr[i].getAbsolutePath();
-        System.out.println(urlPared);
+        //System.out.println(urlPared);
       }
 
       if(arr[i].getAbsolutePath().contains("bodycell")){
         urlCuerpo = arr[i].getAbsolutePath();
-        System.out.println(urlCuerpo);
+        //System.out.println(urlCuerpo);
       }
     }
     
@@ -74,7 +74,7 @@ public class Nivel {
         nivel[x][y] = new Celda(x, y, new EntidadGrafica(urlCelda));
       }
     }*/
-    nivel = reader.buildNivel(this,1);
+    nivel = reader.buildNivel(this,stage);
   }
   
 
@@ -82,8 +82,9 @@ public class Nivel {
     nivel[x][y] = ent;
   }
 
-  public void buildNivel() {
-    nivel = reader.buildNivel(this,1);
+  public Nivel buildNivel(int stage) {
+    nivel = reader.buildNivel(this,stage);
+    return this;
   }
 
   public Posicion generatePosicionValida() { //<-dentro de esto una entidad
@@ -178,7 +179,7 @@ public class Nivel {
 
   public static void main(String[] args) {
     Nivel nivel = new Nivel(1);
-    nivel.buildNivel();
+    //nivel.buildNivel();
     nivel.display();
 
     System.out.println(
