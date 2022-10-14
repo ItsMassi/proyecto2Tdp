@@ -91,12 +91,19 @@ public class Nivel {
   }
   
   //FALTA CORREGIR
-  public Nivel actualizar(){
+  public Nivel actualizar(Posicion posicion, int reserva){//posicion de la cola
     Iterator<Parte> iterador = criatura.getCuerpo();
+    System.out.println("Reserva nivel: "+reserva);
+    if(reserva == 0){
+      //System.out.println(urlCelda);
+      nivel[posicion.getX()][posicion.getY()] = new Celda(posicion.getX(), posicion.getY(), new EntidadGrafica(urlCelda));
+      //System.out.println("Entidad nivel: "+nivel[posicion.getX()][posicion.getY()].getEntidadGrafica().getURL());
+    }
     while (iterador.hasNext()) {
       Parte parte = iterador.next();
       nivel[parte.getPosicion().getX()][parte.getPosicion().getY()] = parte;
     }
+    
     return this;
   }
   

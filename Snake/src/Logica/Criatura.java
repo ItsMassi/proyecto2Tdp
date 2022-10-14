@@ -144,8 +144,8 @@ public class Criatura {
 				System.out.println("cola" + miCuerpo.last().element().getPosicion().getX() + ", " +  miCuerpo.last().element().getPosicion().getY());
 				
 				Parte cola = miCuerpo.remove(miCuerpo.last());
-				cola.setPosicion(0,0);
-				cola.setEntidadGrafica(null);
+				//cola.setPosicion(0,0);
+				//cola.setEntidadGrafica();
 			}
 			else 
 				enReserva--;

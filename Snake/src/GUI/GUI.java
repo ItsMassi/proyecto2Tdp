@@ -92,7 +92,9 @@ public class GUI extends JFrame {
 				while(it.hasNext()) {
 					cola = it.next();
 				}
+				System.out.println("cola dentro Gui: "+ cola.getPosicion().getX());
 				int reserva = criatura.getReserva();
+				System.out.println("Reserva flecha: "+reserva);
 				if(key == KeyEvent.VK_RIGHT) {
 					/*
 					 * Iterator <Parte> it =  criatura.getCuerpo();
@@ -137,15 +139,55 @@ public class GUI extends JFrame {
 				// TODO Auto-generated method stub
 			}
 
+			private void rePintar (Posicion posicion, int r) {
+
+				contentPane.setVisible(false);
+				System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
+
+
+				JPanel contentPane2 = new JPanel();
+				contentPane2.setBorder(new EmptyBorder(5, 5, 5, 5));
+				contentPane2.setLayout(new BorderLayout(0, 0));
+				setContentPane(contentPane2);
+				contentPane2.setLayout(new GridLayout(20,20));
+
+				nivel = nivel.actualizar(posicion,r);
+				System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
+				for(int y=0; y < nivel.getColumnas(); y++) {
+					for(int x= 0; x < nivel.getFilas(); x++) {
+						System.out.println("Posicion: "+x+" "+y);
+						Entidad e = nivel.getEntidad(x, y);
+						String imagen= e.getEntidadGrafica().getURL();
+						ImageIcon grafico= new ImageIcon(imagen);
+						JLabel label=  new JLabel ();
+						label.setIcon(grafico);
+						contentPane2.add(label);
+						
+						label.addComponentListener(new ComponentAdapter() {
+							public void componentResized(ComponentEvent e) {
+								reDimensionar(label,grafico);
+								label.setIcon(grafico);
+							}
+						});
+						
+						
+					}
+				}
+
+				contentPane = contentPane2;
+				contentPane.setVisible(true);
+			}
 		});
 				
 	}
 	
 	
-	private void rePintar (Position p, int r) {
-		nivel = nivel.actualizar(p,r);
+	private void rePintar (Posicion posicion, int r) {
+		System.out.println("REserva dentro Gui "+r);
+		nivel = nivel.actualizar(posicion,r);
 		for(int y=0; y < nivel.getColumnas(); y++) {
 			for(int x= 0; x < nivel.getFilas(); x++) {
+				System.out.println("Posicion: "+x+" "+y);
 				Entidad e = nivel.getEntidad(x, y);
 				String imagen= e.getEntidadGrafica().getURL();
 				ImageIcon grafico= new ImageIcon(imagen);
