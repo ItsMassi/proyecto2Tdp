@@ -3,7 +3,7 @@ package Logica;
 public class Jugador{
     private int puntaje;
     private String nombre;
-    //private Cronometro
+    private int cronometro;
     private Nivel nivel;
 
     public void setPuntaje(int puntaje) {
@@ -17,7 +17,9 @@ public class Jugador{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    public void setTiempo(int t) {
+        cronometro = t;
+    }
     public void setNivel(Nivel nivel) {
         this.nivel = nivel;
     }
@@ -25,7 +27,9 @@ public class Jugador{
     public String getNombre() {
         return nombre;
     }
-
+    public int getTiempo() {
+        return cronometro;
+    }
     public int getPuntaje() {
         return puntaje;
     }
