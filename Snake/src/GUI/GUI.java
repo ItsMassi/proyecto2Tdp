@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -79,6 +80,48 @@ public class GUI extends JFrame {
 				
 			}
 		}
+		
+		contentPane.setFocusable(true);
+		contentPane.addKeyListener(new KeyListener() {
+			public void keyPressed (KeyEvent e) {
+				int key = e.getKeyCode();
+				if(key == KeyEvent.VK_RIGHT) {
+					Posicion pos = criatura.getMovimiento(2);
+					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
+					criatura.moverDerecha(entidad);
+				}
+				
+				if(key== KeyEvent.VK_LEFT) {
+					Posicion pos = criatura.getMovimiento(-2);
+					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
+					criatura.moverIzquierda(entidad);
+				}
+				
+				if(key==KeyEvent.VK_UP) {
+					Posicion pos = criatura.getMovimiento(1);
+					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
+					criatura.moverArriba(entidad);
+				}
+				
+				if(key==KeyEvent.VK_DOWN) {
+					Posicion pos = criatura.getMovimiento(-1);
+					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
+					criatura.moverAbajo(entidad);
+				}
+				
+			}
+
+			@Override
+			public void keyTyped (KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+		});
 				
 	}
 	
@@ -92,32 +135,5 @@ public class GUI extends JFrame {
 		
 	}
 	
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if(key==KeyEvent.VK_RIGHT) {
-			Posicion pos = criatura.getMovimiento(2);
-			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverDerecha(entidad);
-		}
-		
-		if(key== KeyEvent.VK_LEFT) {
-			Posicion pos = criatura.getMovimiento(-2);
-			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverIzquierda(entidad);
-		}
-		
-		if(key==KeyEvent.VK_UP) {
-			Posicion pos = criatura.getMovimiento(1);
-			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverArriba(entidad);
-		}
-		
-		if(key==KeyEvent.VK_DOWN) {
-			Posicion pos = criatura.getMovimiento(-1);
-			Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-			criatura.moverAbajo(entidad);
-		}
-		
-	}
 }
 	
