@@ -27,8 +27,8 @@ public class Criatura {
 		this.jugador = jugador;
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
-		miEstado = estado; 
 		Iterator <Posicion>  it = posiciones.iterator();
+		miEstado = estado; 
 		while (it.hasNext()) {
 			Posicion p = it.next();
 			miCuerpo.addLast(new Parte (p.getX(), p.getY(), miEstado.getAspecto()));

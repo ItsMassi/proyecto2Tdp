@@ -9,8 +9,8 @@ public class EstadoNormal extends Estado {
 	protected static final float velocidad = 1;
 	
 	public EstadoNormal (Criatura criatura, EntidadGrafica look) {
-		criatura.setEstado(this);
 		this.look = look;
+		criatura.setEstado(this);
 		criatura.lookear();
 	}
 	
