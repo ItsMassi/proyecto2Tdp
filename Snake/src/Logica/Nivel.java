@@ -48,7 +48,7 @@ public class Nivel {
     }
     
     //creamos el estado de la criatura
-    Estado est = new EstadoNormal(criatura, new EntidadGrafica(urlCuerpo));
+    Estado est = new EstadoNormal(new EntidadGrafica(urlCuerpo));
 
     //creamos la criatura
     PositionList<Posicion> lista = new DoubleLinkedList<Posicion>();

@@ -10,8 +10,6 @@ import TDALista.*;
 import Visitor.*;
 
 
-
-
 public class Criatura {
 	
 	
