@@ -18,6 +18,7 @@ import Logica.Criatura;
 import Logica.Entidad;
 import Logica.Jugador;
 import Logica.Nivel;
+import Logica.Posicion;
 
 public class gui extends JFrame {
 	private Criatura criatura;

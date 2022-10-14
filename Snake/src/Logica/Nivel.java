@@ -82,6 +82,7 @@ public class Nivel {
   public Criatura getCriatura () {
 	  return criatura;
   }
+  
   public int getFilas() {
     return nivel.length;
   }

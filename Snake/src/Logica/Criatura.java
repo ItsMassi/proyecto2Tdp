@@ -23,11 +23,11 @@ public class Criatura {
 	private Jugador jugador;
 	
 	//cuando se rea se crea en estado normal
-	public Criatura (Jugador jugador, int orientacion, EntidadGrafica look, Estado estado, Visitor visitor, PositionList<Posicion> posiciones) {
+	public Criatura (Jugador jugador, int orientacion, Estado estado, PositionList<Posicion> posiciones) {
 		this.jugador = jugador;
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
-		miEstado = new EstadoNormal (this); 
+		miEstado = estado; 
 		Iterator <Posicion>  it = posiciones.iterator();
 		while (it.hasNext()) {
 			Posicion p = it.next();
@@ -56,28 +56,7 @@ public class Criatura {
 			it.next().setEntidadGrafica(imagen);
 		}
 	}
-	public Posicion getMovimiento (int o) {
-		Posicion pos = null;
-			try {
-				Parte cabeza = miCuerpo.first().element();
-			
-			switch (o) {
-				case 1: {pos = desplazarEnY(cabeza, 1);
-				break;}
-				case -1: {pos = desplazarEnY(cabeza, -1);
-				break;}
-				case 2: {pos = desplazarEnX(cabeza, 1);
-				break;}
-				case -2: {pos = desplazarEnY(cabeza, -1);
-				break;}
-				
-			}
-		} catch (EmptyListException e) {e.printStackTrace();}
 		
-		return pos;
-		
-	}
-	
 	public 	Criatura comer (Comida c) {
 		try {
 			Parte cola = miCuerpo.last().element();
@@ -100,22 +79,48 @@ public class Criatura {
 		}
 	}
 	
-	private Posicion desplazarEnX (Parte cabeza, int desplazar) {	
+	public Parte getCabeza() {
+		Parte cabeza=null;
+		try {
+			 cabeza = miCuerpo.first().element();
+		} catch (EmptyListException e) {e.printStackTrace();}
+		return cabeza;
+	}
+	
+	public Posicion getMovimiento (int o) {
+		Posicion pos = null;
+			switch (o) {
+				case 1: {pos = desplazarEnY(1);
+				break;}
+				case -1: {pos = desplazarEnY(-1);
+				break;}
+				case 2: {pos = desplazarEnX(1);
+				break;}
+				case -2: {pos = desplazarEnY(-1);
+				break;}
+			}
+		
+		return pos;		
+	}
+	
+	private Posicion desplazarEnX (int desplazar) {	
+		Parte cabeza = getCabeza();
 		int x = cabeza.getPosicion().getX() + desplazar;
 		return new Posicion (x, cabeza.getPosicion().getY());
 	}
 	
-	private Posicion desplazarEnY (Parte cabeza, int desplazar) {
+	private Posicion desplazarEnY (int desplazar) {
+		Parte cabeza = getCabeza();
 		int y = cabeza.getPosicion().getY() + desplazar;
 		return new Posicion (cabeza.getPosicion().getX(), y);
 	}
 	
-	private void mover (Posicion p, EntidadGrafica imagenCabeza) {
-		Parte nuevaCabeza = new Parte (p.getX(), p.getY(), imagenCabeza);
+	private void mover (Posicion p) {
+		Parte nuevaCabeza = new Parte (p.getX(), p.getY(), getCabeza().getEntidadGrafica());
 		miCuerpo.addFirst(nuevaCabeza);
 		
 		try {
-			if (enReserva==0) {
+			if (enReserva == 0) {
 				Parte cola = miCuerpo.remove(miCuerpo.last());
 				cola.setPosicion(0,0);
 				cola.setEntidadGrafica(null);
@@ -128,14 +133,11 @@ public class Criatura {
 	}
 	
 	public Criatura moverArriba (Entidad entidad) {
-		try {
-			if (orientacion != -1) {
-				Parte cabeza = miCuerpo.first().element();	
-				Posicion PosNuevaCabeza = desplazarEnY(cabeza, 1);
-				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
-				orientacion = 1;
-			} 
-		} catch (EmptyListException e) {e.printStackTrace();}
+		if (orientacion != -1) {
+			Posicion PosNuevaCabeza = desplazarEnY(1);
+			mover (PosNuevaCabeza);
+			orientacion = 1;
+		} 
 		
 		entidad.accept(miVisitor);
 		
@@ -143,29 +145,23 @@ public class Criatura {
 	}
 	
 	public Criatura moverAbajo (Entidad entidad) {
-		try {
-			if (orientacion != 1) {
-				Parte cabeza = miCuerpo.first().element();	
-				Posicion PosNuevaCabeza = desplazarEnY(cabeza, -1);
-				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
-				orientacion = - 1;
-			}
-		} catch (EmptyListException e) {e.printStackTrace();}
+		if (orientacion != -1) {
+			Posicion PosNuevaCabeza = desplazarEnY(-1);
+			mover (PosNuevaCabeza);
+			orientacion = 1;
+		} 
 		
 		entidad.accept(miVisitor);
 		
 		return this;
 	}
 	
-	public Criatura moverIquierda (Entidad entidad) {
-		try {
-			if (orientacion != 2) {
-				Parte cabeza = miCuerpo.first().element();	
-				Posicion PosNuevaCabeza = desplazarEnX(cabeza, -1);
-				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
-				orientacion = -2;
-			}
-		} catch (EmptyListException e) {e.printStackTrace();}
+	public Criatura moverIzquierda (Entidad entidad) {
+		if (orientacion != -1) {
+			Posicion PosNuevaCabeza = desplazarEnX(1);
+			mover (PosNuevaCabeza);
+			orientacion = 1;
+		} 
 		
 		entidad.accept(miVisitor);
 		
@@ -173,14 +169,11 @@ public class Criatura {
 	}
 	
 	public Criatura moverDerecha (Entidad entidad) {
-		try {
-			if (orientacion != -2) {
-				Parte cabeza = miCuerpo.first().element();	
-				Posicion PosNuevaCabeza = desplazarEnX(cabeza, 1);
-				mover (PosNuevaCabeza , cabeza.getEntidadGrafica());
-				orientacion = 2;
-			}
-		} catch (EmptyListException e) {e.printStackTrace();}
+		if (orientacion != -1) {
+			Posicion PosNuevaCabeza = desplazarEnX(-1);
+			mover (PosNuevaCabeza);
+			orientacion = 1;
+		} 
 		
 		entidad.accept(miVisitor);
 		
