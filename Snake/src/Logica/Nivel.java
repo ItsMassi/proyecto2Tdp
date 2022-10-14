@@ -8,16 +8,16 @@ import java.util.Iterator;
 
 //Dani
 public class Nivel {
-  Jugador jugador = new Jugador();
-  LevelReader reader = new LevelReader(2);
-  Entidad[][] nivel = new Entidad[20][20];
-  File[] arr = reader.getDirImagenes().listFiles();
-  String urlCelda = "";
-  String urlAlimento = "";
-  String urlPowerup = "";
-  String urlPared = "";
-  String urlCuerpo = "";
-  Criatura criatura;
+  private Jugador jugador = new Jugador();
+  private LevelReader reader = new LevelReader(2);
+  private Entidad[][] nivel = new Entidad[20][20];
+  private File[] arr = reader.getDirImagenes().listFiles();
+  private String urlCelda = "";
+  private String urlAlimento = "";
+  private String urlPowerup = "";
+  private String urlPared = "";
+  private String urlCuerpo = "";
+  private Criatura criatura;
 
   /*
    * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 

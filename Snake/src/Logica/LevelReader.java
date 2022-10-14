@@ -9,12 +9,12 @@ import java.util.Scanner;
 
 public class LevelReader {
 
-  LinkedList<Entry<Integer, Integer>> comida = new LinkedList<>(); //coleccion de ubicacion de comida  [no usado hasta tener clase comida]
-  LinkedList<Entry<Integer, Integer>> muro = new LinkedList<>(); //por ahora no usado mas delante lo usaremos
-  char[][] map = new char[20][20];
-  String path;
-  File DirPlanos = null;
-  File DirImagenes = null;
+  private LinkedList<Entry<Integer, Integer>> comida = new LinkedList<>(); //coleccion de ubicacion de comida  [no usado hasta tener clase comida]
+  private LinkedList<Entry<Integer, Integer>> muro = new LinkedList<>(); //por ahora no usado mas delante lo usaremos
+  private char[][] map = new char[20][20];
+  private String path;
+  private File DirPlanos = null;
+  private File DirImagenes = null;
 
   public LevelReader(int lvl) {
     //buscamos el archivo
