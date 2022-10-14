@@ -61,7 +61,7 @@ public class Criatura {
 	public Jugador getJugador() {return jugador;}
 	
 		
-	public 	Criatura comer (Comida c) {
+	public Criatura comer (Comida c) {
 		try {
 			Parte cola = miCuerpo.last().element();
 			for (int i=0; i< c.getTamano(); i++) {
@@ -187,9 +187,4 @@ public class Criatura {
 	public void accept (Visitor visitor) {
 		visitor.visit(this);
 	}
-
-
-	
-
-	
 }
