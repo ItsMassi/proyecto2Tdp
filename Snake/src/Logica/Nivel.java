@@ -4,6 +4,7 @@ import TDALista.*;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Iterator;
 
 //Dani
 public class Nivel {
@@ -54,7 +55,7 @@ public class Nivel {
         //System.out.println(urlCuerpo);
       }
     }
-    
+    nivel = reader.buildNivel(this,stage);
     //creamos el estado de la criatura
     Estado est = new EstadoNormal(new EntidadGrafica(urlCuerpo));
 
@@ -65,6 +66,11 @@ public class Nivel {
     lista.addLast(new Posicion(12, 10));
 
     criatura = new Criatura (jugador, 1, est,  lista);
+    Iterator<Parte> iterador = criatura.getCuerpo();
+    while (iterador.hasNext()) {
+      Parte parte = iterador.next();
+      nivel[parte.getPosicion().getX()][parte.getPosicion().getY()] = parte;
+    }
 
     //inicializamos la lista
     /* 
@@ -74,10 +80,17 @@ public class Nivel {
         nivel[x][y] = new Celda(x, y, new EntidadGrafica(urlCelda));
       }
     }*/
-    nivel = reader.buildNivel(this,stage);
+    
   }
   
-
+  //FALTA CORREGIR
+  public void actualizar(){
+    Iterator<Parte> iterador = criatura.getCuerpo();
+    while (iterador.hasNext()) {
+      Parte parte = iterador.next();
+      nivel[parte.getPosicion().getX()][parte.getPosicion().getY()] = parte;
+    }
+  }
   public void modificar(int x, int y, Entidad ent) {
     nivel[x][y] = ent;
   }
