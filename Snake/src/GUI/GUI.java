@@ -19,6 +19,7 @@ import Logica.Entidad;
 import Logica.Jugador;
 import Logica.Nivel;
 import Logica.Posicion;
+
 public class GUI extends JFrame {
 	private Criatura criatura;
 	private Jugador player;
@@ -54,7 +55,9 @@ public class GUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-
+		
+		 Nivel juego = new Nivel ();
+		 criatura = juego.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
 		for(int x=0; x < nivel.getFilas(); x++) {
