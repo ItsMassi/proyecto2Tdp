@@ -19,7 +19,7 @@ public class Criatura {
 	protected PositionList<Parte> miCuerpo;
 	protected Estado miEstado;
 	protected Visitor miVisitor;
-	private int enReserva=0;
+	private int enReserva = 0;
 	private Jugador jugador;
 	
 	//cuando se crea se crea en estado normal
@@ -28,19 +28,28 @@ public class Criatura {
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
 		miEstado = estado;
+		EntidadGrafica imagen = miEstado.getAspecto();
 		Iterator <Posicion>  it = posiciones.iterator();
 		while (it.hasNext()) {
 			Posicion p = it.next();
-			miCuerpo.addLast(new Parte (p.getX(), p.getY(), miEstado.getAspecto()));
+			miCuerpo.addLast(new Parte (p.getX(), p.getY(), imagen));
 		}
 		miVisitor = new VisitorCriatura(this);
 	}
 	
 	
 	public void setOrientacion (int orientacion) {this.orientacion = orientacion;}
+	
+	private void lookear () {
+		EntidadGrafica imagen = miEstado.getAspecto();
+		Iterator <Parte>  it = miCuerpo.iterator();
+		while (it.hasNext()) {
+			it.next().setEntidadGrafica(imagen);
+		}
+	}
 		
 	public void setEstado (Estado estado) {
-		miEstado=estado;
+		miEstado = estado;
 		lookear();
 	}
 
@@ -52,13 +61,6 @@ public class Criatura {
 	
 	public Jugador getJugador() {return jugador;}
 	
-	private void lookear () {
-		EntidadGrafica imagen = miEstado.getAspecto();
-		Iterator <Parte>  it = miCuerpo.iterator();
-		while (it.hasNext()) {
-			it.next().setEntidadGrafica(imagen);
-		}
-	}
 		
 	public 	Criatura comer (Comida c) {
 		try {
