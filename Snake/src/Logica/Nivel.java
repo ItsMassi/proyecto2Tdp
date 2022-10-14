@@ -1,10 +1,12 @@
 package Logica;
+import Estado.*;
+import TDALista.*;
 
 import java.net.URL;
 
 //Dani
 public class Nivel {
-
+  Jugador jugador = new Jugador();
   Entidad[][] nivel;
   LevelReader reader = new LevelReader(1);
   String[] arr = reader.getDirImagenes().list();
@@ -12,9 +14,17 @@ public class Nivel {
   String urlAlimento = "";
   String urlPowerup = "";
   String urlPared = "";
+  String urlCuerpo = "";
   Criatura criatura;
 
+  /*
+   * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ 
+   * ALERTA IMPORTANTE ALERTA IMPORTANTE ALERTA IMPORTANTE ALERTA IMPORTANTE ALERTA IMPORTANTE 
+   * POR AHORA EL CONSTRUCTOR SOLO CREA UN NIVEL VACIO MAS ADELANTE HAY QUE CORREGIR
+   * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  */
   public Nivel() {
+    //buscamos los componentes de las imagenes
     for (int i = 0; i < arr.length; i++) {
       if (arr[i].contains("bgcell")) {
         urlCelda = arr[i];
@@ -31,8 +41,24 @@ public class Nivel {
       if (arr[i].contains("wallcell")) {
         urlPared = arr[i];
       }
-    }
 
+      if(arr[i].contains("bodycell")){
+        urlCuerpo = arr[i];
+      }
+    }
+    
+    //creamos el estado de la criatura
+    Estado est = new EstadoNormal(criatura, new EntidadGrafica(urlCuerpo));
+
+    //creamos la criatura
+    PositionList<Posicion> lista = new DoubleLinkedList<Posicion>();
+    lista.addLast(new Posicion(10, 10));
+    lista.addLast(new Posicion(11, 10));
+    lista.addLast(new Posicion(12, 10));
+
+    criatura = new Criatura (jugador, 1, est,  lista);
+
+    //inicializamos la lista
     nivel = new Entidad[20][20];
     for (int x = 0; x < nivel.length; x++) {
       for (int y = 0; y < nivel[0].length; y++) {
