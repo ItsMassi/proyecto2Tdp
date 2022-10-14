@@ -27,10 +27,7 @@ public class Criatura {
 		this.jugador = jugador;
 		this.orientacion = orientacion;
 		miCuerpo = new DoubleLinkedList <Parte> ();
-<<<<<<< HEAD
-=======
 		miEstado = estado;
->>>>>>> 4091d7c5b1a98fbc5dfc562ddc8a473509c1f3c5
 		Iterator <Posicion>  it = posiciones.iterator();
 		miEstado = estado; 
 		while (it.hasNext()) {
