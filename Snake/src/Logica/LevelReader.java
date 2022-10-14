@@ -99,8 +99,11 @@ public class LevelReader {
     }
   }
 
-  public Entidad[][] buildNivel(Nivel nivel) {
+  public Entidad[][] buildNivel(Nivel nivel, int stage) {
     File file = new File(path); // abrimos el archivo dentro de java
+    File[] arrLvl = DirPlanos.listFiles();
+    file = arrLvl[stage-1];
+    System.out.println("$$$$$$$$$$$ NIVEL A CREAR: "+file.getAbsolutePath());
     File[] arr = DirImagenes.listFiles();
     String urlCelda = "";
     String urlAlimento = "";
@@ -207,7 +210,7 @@ public class LevelReader {
 
   public static void main(String[] args) {
     LevelReader minivel;
-    minivel = new LevelReader(2);
+    minivel = new LevelReader(3);
     minivel.display();
   }
 }

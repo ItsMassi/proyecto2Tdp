@@ -8,7 +8,7 @@ import java.net.URL;
 //Dani
 public class Nivel {
   Jugador jugador = new Jugador();
-  Entidad[][] nivel;
+  Entidad[][] nivel = new Entidad[20][20];
   LevelReader reader = new LevelReader(1);
   File[] arr = reader.getDirImagenes().listFiles();
   String urlCelda = "";
@@ -24,7 +24,7 @@ public class Nivel {
    * POR AHORA EL CONSTRUCTOR SOLO CREA UN NIVEL VACIO MAS ADELANTE HAY QUE CORREGIR
    * +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   */
-  public Nivel() {
+  public Nivel(int stage) {
     //buscamos los componentes de las imagenes
     for (int i = 0; i < arr.length; i++) {
 
@@ -67,20 +67,23 @@ public class Nivel {
     criatura = new Criatura (jugador, 1, est,  lista);
 
     //inicializamos la lista
+    /* 
     nivel = new Entidad[20][20];
     for (int x = 0; x < nivel.length; x++) {
       for (int y = 0; y < nivel[0].length; y++) {
         nivel[x][y] = new Celda(x, y, new EntidadGrafica(urlCelda));
       }
-    }
+    }*/
+    nivel = reader.buildNivel(this,1);
   }
+  
 
   public void modificar(int x, int y, Entidad ent) {
     nivel[x][y] = ent;
   }
 
   public void buildNivel() {
-    nivel = reader.buildNivel(this);
+    nivel = reader.buildNivel(this,1);
   }
 
   public Posicion generatePosicionValida() { //<-dentro de esto una entidad
@@ -117,11 +120,11 @@ public class Nivel {
 	  return criatura;
   }
   public int getFilas() {
-    return nivel.length;
+    return 20;
   }
 
   public int getColumnas() {
-    return nivel[0].length;
+    return 20;
   }
 
   public Entidad getEntidad(int x, int y) {
@@ -174,7 +177,7 @@ public class Nivel {
   }
 
   public static void main(String[] args) {
-    Nivel nivel = new Nivel();
+    Nivel nivel = new Nivel(1);
     nivel.buildNivel();
     nivel.display();
 

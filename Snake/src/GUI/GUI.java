@@ -55,8 +55,8 @@ public class GUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
-		  nivel = new Nivel ();
+			//cambiar esto despues ++++++++++++++++++++++++++++++
+		  nivel = new Nivel (2);
 		 criatura = nivel.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
