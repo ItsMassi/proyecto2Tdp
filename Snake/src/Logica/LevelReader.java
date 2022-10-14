@@ -98,10 +98,11 @@ public class LevelReader {
   }
 
   public Entidad[][] buildNivel(Nivel nivel, int stage) {
+    stage--;
     File file; // abrimos el archivo dentro de java
     File[] arrLvl = DirPlanos.listFiles();
-    file = arrLvl[stage-1];
-    System.out.println("$$$$$$$$$$$ NIVEL A CREAR: "+arrLvl[stage]);
+    file = arrLvl[stage];
+    System.out.println("$$$$$$$$$$$ NIVEL A CREAR +"+(stage-1)+": "+arrLvl[stage]);
     File[] arr = DirImagenes.listFiles();
     String urlCelda = "";
     String urlAlimento = "";

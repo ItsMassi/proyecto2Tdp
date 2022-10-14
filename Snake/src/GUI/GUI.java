@@ -56,7 +56,7 @@ public class GUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 			//PARA CAMBIAR EL NIVEL, CAMBIA EL NUMERO DE ACA ABAJO
-		  nivel = new Nivel (3);
+		  nivel = new Nivel (5);
 		 criatura = nivel.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
