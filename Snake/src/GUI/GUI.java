@@ -60,9 +60,9 @@ public class GUI extends JFrame {
 		 criatura = juego.getCriatura();
 		contentPane.setLayout(new GridLayout(20,20));
 		
-		for(int x=0; x < nivel.getFilas(); x++) {
-			for(int y= 0; y < nivel.getColumnas(); y++) {
-				Entidad e = nivel.getEntidad(x, y);
+		for(int x=0; x < juego.getFilas(); x++) {
+			for(int y= 0; y < juego.getColumnas(); y++) {
+				Entidad e = juego.getEntidad(x, y);
 				String imagen= e.getEntidadGrafica().getURL();
 				ImageIcon grafico= new ImageIcon(imagen);
 				JLabel label=  new JLabel ();
