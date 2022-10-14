@@ -65,7 +65,7 @@ public class Nivel {
     lista.addLast(new Posicion(11, 10));
     lista.addLast(new Posicion(12, 10));
 
-    criatura = new Criatura (jugador, 1, est,  lista);
+    criatura = new Criatura (jugador, 2, est,  lista);
     Iterator<Parte> iterador = criatura.getCuerpo();
     while (iterador.hasNext()) {
       Parte parte = iterador.next();

@@ -84,9 +84,11 @@ public class Criatura {
 	}
 	
 	public Parte getCabeza() {
-		Parte cabeza=null;
+		System.out.println("entre a get cabeza");
+		Parte cabeza = null;
 		try {
 			 cabeza = miCuerpo.first().element();
+			 System.out.println(cabeza.getPosicion().getX() + ", " + cabeza.getPosicion().getY());
 		} catch (EmptyListException e) {e.printStackTrace();}
 		return cabeza;
 	}
@@ -116,11 +118,13 @@ public class Criatura {
 	private Posicion desplazarEnY (int desplazar) {
 		Parte cabeza = getCabeza();
 		int y = cabeza.getPosicion().getY() + desplazar;
+		System.out.println(cabeza.getPosicion().getX() + ", " + y);
 		return new Posicion (cabeza.getPosicion().getX(), y);
 	}
 	
 	private void mover (Posicion p) {
 		Parte nuevaCabeza = new Parte (p.getX(), p.getY(), getCabeza().getEntidadGrafica());
+		System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
 		miCuerpo.addFirst(nuevaCabeza);
 		
 		try {
@@ -149,10 +153,10 @@ public class Criatura {
 	}
 	
 	public Criatura moverAbajo (Entidad entidad) {
-		if (orientacion != -1) {
+		if (orientacion != 1) {
 			Posicion PosNuevaCabeza = desplazarEnY(-1);
 			mover (PosNuevaCabeza);
-			orientacion = 1;
+			orientacion = -1;
 		} 
 		
 		entidad.accept(miVisitor);
@@ -161,10 +165,10 @@ public class Criatura {
 	}
 	
 	public Criatura moverIzquierda (Entidad entidad) {
-		if (orientacion != -1) {
-			Posicion PosNuevaCabeza = desplazarEnX(1);
+		if (orientacion != 2) {
+			Posicion PosNuevaCabeza = desplazarEnX(-1);
 			mover (PosNuevaCabeza);
-			orientacion = 1;
+			orientacion = -2;
 		} 
 		
 		entidad.accept(miVisitor);
@@ -173,12 +177,17 @@ public class Criatura {
 	}
 	
 	public Criatura moverDerecha (Entidad entidad) {
-		if (orientacion != -1) {
-			Posicion PosNuevaCabeza = desplazarEnX(-1);
+		if (orientacion != -2) {
+			Posicion PosNuevaCabeza = desplazarEnX(1);
 			mover (PosNuevaCabeza);
-			orientacion = 1;
+			orientacion = 2;
 		} 
 		
+		Iterator <Parte> it = miCuerpo.iterator();
+		while (it.hasNext()) {
+			Parte nuevaCabeza = it.next();
+			System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
+		}
 		entidad.accept(miVisitor);
 		
 		return this;

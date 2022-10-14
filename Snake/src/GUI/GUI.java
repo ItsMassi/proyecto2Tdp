@@ -8,6 +8,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import Logica.Criatura;
 import Logica.Entidad;
 import Logica.Jugador;
 import Logica.Nivel;
+import Logica.Parte;
 import Logica.Posicion;
 
 public class GUI extends JFrame {
@@ -86,6 +88,11 @@ public class GUI extends JFrame {
 			public void keyPressed (KeyEvent e) {
 				int key = e.getKeyCode();
 				if(key == KeyEvent.VK_RIGHT) {
+					Iterator <Parte> it =  criatura.getCuerpo();
+					while (it.hasNext()) {
+						Parte nuevaCabeza = it.next();
+						System.out.println(nuevaCabeza.getPosicion().getX() + ", " + nuevaCabeza.getPosicion().getY());
+					}
 					Posicion pos = criatura.getMovimiento(2);
 					Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
 					criatura.moverDerecha(entidad);
