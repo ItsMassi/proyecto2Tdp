@@ -87,6 +87,7 @@ public class GUI extends JFrame {
 			HiloCriatura hilo= new HiloCriatura();
 			hilo.setGui(this);
 			hilo.start();
+			System.out.println(" +++++++++++ " + hilo.isAlive());
 				
 	}
 	

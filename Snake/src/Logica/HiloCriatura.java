@@ -18,9 +18,12 @@ public class HiloCriatura extends Thread {
 	GUI gui = null;
 	Criatura criatura = null;
 	public void run(){
+			System.out.println("entre a run-----------------------------------------------------------------");
 			gui.getPane().setFocusable(true);
 			gui.getPane().addKeyListener(new KeyListener() {
+				
 				public void keyPressed (KeyEvent e) {
+					System.out.println("APRETE TECLA-----------------------------------------------------------------");
 					Nivel nivel = gui.getNivel();
 					Criatura criatura = gui.getCriatura();
 					int key = e.getKeyCode();
@@ -73,6 +76,13 @@ public class HiloCriatura extends Thread {
 				}
 	
 			});
+			try {
+				this.sleep(40);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 	}
 	
 	public void setGui(GUI g) {
