@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 import Nodo.*;
 import Logica.Criatura;
 import Logica.Entidad;
+import Logica.HiloCriatura;
 import Logica.Jugador;
 import Logica.Nivel;
 import Logica.Parte;
@@ -80,109 +81,56 @@ public class GUI extends JFrame {
 						}
 					});
 					
-					
 				}
-			}
-			boolean entre=true;
-			//while (entre) {}
+			}				
 			
-			contentPane.setFocusable(true);
-			contentPane.addKeyListener(new KeyListener() {
-				public void keyPressed (KeyEvent e) {
-					int key = e.getKeyCode();
-					Parte cola=null;
-					Iterator <Parte> it =  criatura.getCuerpo();
-					while(it.hasNext()) {
-						cola = it.next();
-					}
-					System.out.println("cola dentro Gui: "+ cola.getPosicion().getX());
-					int reserva = criatura.getReserva();
-					System.out.println("Reserva flecha: "+reserva);
-					if(key == KeyEvent.VK_RIGHT) {
-						Posicion pos = criatura.getMovimiento(2);
-						Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-						criatura.moverDerecha(entidad);
-						rePintar(cola.getPosicion(), reserva);
-					}
-					
-					if(key== KeyEvent.VK_LEFT) {
-						Posicion pos = criatura.getMovimiento(-2);
-						Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-						criatura.moverIzquierda(entidad);
-						rePintar(cola.getPosicion(), reserva);
-					}
-					
-					if(key==KeyEvent.VK_UP) {
-						Posicion pos = criatura.getMovimiento(1);
-						Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-						criatura.moverArriba(entidad);
-						rePintar(cola.getPosicion(), reserva);
-					}
-					
-					if(key==KeyEvent.VK_DOWN) {
-						Posicion pos = criatura.getMovimiento(-1);
-						Entidad entidad = nivel.getEntidad(pos.getX(),pos.getY());
-						criatura.moverAbajo(entidad);
-						rePintar(cola.getPosicion(), reserva);
-					}
-					
-				}
-	
-				@Override
-				public void keyTyped (KeyEvent e) {
-					// TODO Auto-generated method stub
-				}
-	
-				@Override
-				public void keyReleased(KeyEvent e) {
-					// TODO Auto-generated method stub
-				}
-
-			private void rePintar (Posicion posicion, int r) {
-
-				contentPane.setVisible(false);
-				System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
-
-
-				JPanel contentPane2 = new JPanel();
-				contentPane2.setBorder(new EmptyBorder(5, 5, 5, 5));
-				contentPane2.setLayout(new BorderLayout(0, 0));
-				setContentPane(contentPane2);
-				contentPane2.setLayout(new GridLayout(20,20));
-
-				nivel = nivel.actualizar(posicion,r);
-				System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
-				for(int y=0; y < nivel.getColumnas(); y++) {
-					for(int x= 0; x < nivel.getFilas(); x++) {
-						System.out.println("Posicion: "+x+" "+y);
-						Entidad e = nivel.getEntidad(x, y);
-						String imagen= e.getEntidadGrafica().getURL();
-						ImageIcon grafico= new ImageIcon(imagen);
-						JLabel label=  new JLabel ();
-						label.setIcon(grafico);
-						contentPane2.add(label);
-						
-						label.addComponentListener(new ComponentAdapter() {
-							public void componentResized(ComponentEvent e) {
-								reDimensionar(label,grafico);
-								label.setIcon(grafico);
-							}
-						});
-						
-						
-					}
-				}
-
-				contentPane = contentPane2;
-				contentPane.setVisible(true);
-				
-			}
-		});
+			HiloCriatura hilo= new HiloCriatura();
+			hilo.setGui(this);
+			hilo.start();
 				
 	}
 	
 	
-	private void reDimensionar(JLabel label , ImageIcon  grafico){
+	public void rePintar (Posicion posicion, int r) {
+
+		contentPane.setVisible(false);
+		System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
+
+
+		JPanel contentPane2 = new JPanel();
+		contentPane2.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane2.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane2);
+		contentPane2.setLayout(new GridLayout(20,20));
+
+		nivel = nivel.actualizar(posicion,r);
+		System.out.println("entidad dentro Gui antes actualizar "+ nivel.getEntidad(posicion.getX(), posicion.getY()).getEntidadGrafica().getURL());
+		for(int y=0; y < nivel.getColumnas(); y++) {
+			for(int x= 0; x < nivel.getFilas(); x++) {
+				System.out.println("Posicion: "+x+" "+y);
+				Entidad e = nivel.getEntidad(x, y);
+				String imagen= e.getEntidadGrafica().getURL();
+				ImageIcon grafico= new ImageIcon(imagen);
+				JLabel label=  new JLabel ();
+				label.setIcon(grafico);
+				contentPane2.add(label);
+				
+				label.addComponentListener(new ComponentAdapter() {
+					public void componentResized(ComponentEvent e) {
+						reDimensionar(label,grafico);
+						label.setIcon(grafico);
+					}
+				});
+				
+
+			}
+		}
+		contentPane = contentPane2;
+		contentPane.setVisible(true);
+		
+	}
+	
+	public void reDimensionar(JLabel label , ImageIcon  grafico){
 		Image image= grafico.getImage();
 		if(image!=null) {
 			Image newing = image.getScaledInstance(label.getWidth(),label.getHeight() ,java.awt.Image.SCALE_SMOOTH);
@@ -191,8 +139,10 @@ public class GUI extends JFrame {
 		}
 		
 	}
-	
-	
-	
+
+	public JPanel getPane() {return contentPane;}
+	public void setPane(JPanel c) {contentPane=c;}
+	public Criatura getCriatura() {return criatura;}
+	public Nivel getNivel() {return nivel;}
 }
 	
