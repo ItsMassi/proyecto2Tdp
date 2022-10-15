@@ -53,7 +53,7 @@ public class GUI extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI() {
-		nivel = new Nivel (1);
+		nivel = new Nivel (5);
 		criatura = nivel.getCriatura();
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 456, 469);
