@@ -105,13 +105,13 @@ public class Criatura {
 	public Posicion getMovimiento (int o) {
 		Posicion pos = null;
 			switch (o) {
-				case 1: {pos = desplazarEnY(1);
+				case 1: {pos = desplazarEnY(-1);
 				break;}
-				case -1: {pos = desplazarEnY(-1);
+				case -1: {pos = desplazarEnY(1);
 				break;}
 				case 2: {pos = desplazarEnX(1);
 				break;}
-				case -2: {pos = desplazarEnY(-1);
+				case -2: {pos = desplazarEnX(-1);
 				break;}
 			}
 		
@@ -129,6 +129,7 @@ public class Criatura {
 	private Posicion desplazarEnY (int desplazar) {
 		Parte cabeza = getCabeza();
 		int y = cabeza.getPosicion().getY() + desplazar;
+		System.out.println(cabeza.getPosicion().getX() + ", "  + y);
 		return new Posicion (cabeza.getPosicion().getX(), y);
 	}
 	
@@ -156,7 +157,7 @@ public class Criatura {
 	
 	public Criatura moverArriba (Entidad entidad) {
 		if (orientacion != -1) {
-			Posicion PosNuevaCabeza = desplazarEnY(1);
+			Posicion PosNuevaCabeza = desplazarEnY(-1);
 			mover (PosNuevaCabeza);
 			orientacion = 1;
 		} 
@@ -168,7 +169,7 @@ public class Criatura {
 	
 	public Criatura moverAbajo (Entidad entidad) {
 		if (orientacion != 1) {
-			Posicion PosNuevaCabeza = desplazarEnY(-1);
+			Posicion PosNuevaCabeza = desplazarEnY(1);
 			mover (PosNuevaCabeza);
 			orientacion = -1;
 		} 
